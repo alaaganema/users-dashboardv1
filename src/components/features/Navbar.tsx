@@ -1,10 +1,12 @@
 import { memo } from "react";
-import { Button } from "@/components/ui/button";
+// import { Button } from "@/components/ui/button";
 import { useAuth } from "@/hooks/useAuth";
-import { LogOut, Users } from "lucide-react";
+// import { LogOut, Users } from "lucide-react";
+import { Users } from "lucide-react";
 
 export const Navbar = memo(function Navbar() {
-  const { user, logout } = useAuth();
+  // const { user, logout } = useAuth();
+  const { user } = useAuth();
 
   return (
     <nav className="fixed top-0 left-0 right-0 z-50 bg-background border-b">
