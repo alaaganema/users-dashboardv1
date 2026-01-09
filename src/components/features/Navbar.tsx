@@ -14,7 +14,7 @@ export const Navbar = memo(function Navbar() {
         <div className="flex items-center justify-between">
           <div className="flex items-center gap-2">
             <Users className="h-5 w-5" />
-            <h1 className="text-2xl font-semibold hidden md:block">
+            <h1 className="text-sm sm:text-lg md:text-2xl font-semibold">
               Users Dashboard
             </h1>
           </div>
@@ -23,7 +23,7 @@ export const Navbar = memo(function Navbar() {
               <div className="text-sm text-muted-foreground">
                 <span className="font-medium">Alaa Ganema</span>
                 <span className="mx-2">•</span>
-                <span>Administrator</span>
+                <span>Admin</span>
               </div>
             )}
             {/* <Button variant="outline" size="sm" onClick={logout}>
