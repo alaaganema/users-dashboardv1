@@ -7,9 +7,8 @@ import {
   SelectValue,
 } from "@/components/ui/select";
 import { Button } from "@/components/ui/button";
-import { ArrowUp, ArrowDown } from "lucide-react";
-
-export type SortOrder = "asc" | "desc";
+import { ArrowUp } from "lucide-react";
+import type { SortOrder } from "@/types/user";
 
 export interface SortOption<T extends string | number> {
   value: T;
@@ -57,18 +56,12 @@ function SortControlsComponent<T extends string | number>({
         className="h-9 w-9"
         aria-label={`Sort ${order === "asc" ? "descending" : "ascending"}`}
       >
-        {order === "asc" ? (
-          <ArrowUp className="h-4 w-4" />
-        ) : (
-          <ArrowDown className="h-4 w-4" />
-        )}
+        <ArrowUp className={`h-4 w-4 ${order === "asc" ? "" : "rotate-180"}`} />
       </Button>
     </div>
   );
 }
 
-export const SortControls = memo(SortControlsComponent) as <
-  T extends string | number
->(
+export const SortControls = memo(SortControlsComponent) as <T extends string | number>(
   props: SortControlsProps<T>
 ) => ReactElement;

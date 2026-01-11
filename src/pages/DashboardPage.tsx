@@ -1,8 +1,7 @@
-import { memo } from "react";
 import { Navbar } from "@/components/features/Navbar";
 import { UsersSection } from "@/components/features/UsersSection";
 
-export const DashboardPage = memo(function DashboardPage() {
+export const DashboardPage = () => {
   return (
     <div className="min-h-screen bg-background">
       <Navbar />
@@ -11,4 +10,4 @@ export const DashboardPage = memo(function DashboardPage() {
       </div>
     </div>
   );
-});
+};

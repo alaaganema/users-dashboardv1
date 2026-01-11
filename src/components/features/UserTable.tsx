@@ -41,35 +41,20 @@ export const UserTable = memo(function UserTable({
     <div className="rounded-md border">
       <Table>
         <TableHeader>
-          <TableRow>
-            <TableHead
-              className="cursor-pointer hover:bg-muted/50 select-none"
-              onClick={() => onSort("name")}
-            >
+          <TableRow className="*:cursor-pointer *:hover:bg-muted/50 *:select-none">
+            <TableHead onClick={() => onSort("name")}>
               Name {getSortIcon("name")}
             </TableHead>
-            <TableHead
-              className="cursor-pointer hover:bg-muted/50 select-none"
-              onClick={() => onSort("email")}
-            >
+            <TableHead onClick={() => onSort("email")}>
               Email {getSortIcon("email")}
             </TableHead>
-            <TableHead
-              className="cursor-pointer hover:bg-muted/50 select-none"
-              onClick={() => onSort("username")}
-            >
+            <TableHead onClick={() => onSort("username")}>
               Username {getSortIcon("username")}
             </TableHead>
-            <TableHead
-              className="cursor-pointer hover:bg-muted/50 select-none"
-              onClick={() => onSort("company")}
-            >
+            <TableHead onClick={() => onSort("company")}>
               Company {getSortIcon("company")}
             </TableHead>
-            <TableHead
-              className="cursor-pointer hover:bg-muted/50 select-none"
-              onClick={() => onSort("city")}
-            >
+            <TableHead onClick={() => onSort("city")}>
               City {getSortIcon("city")}
             </TableHead>
             <TableHead>Phone</TableHead>

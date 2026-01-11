@@ -1,7 +1,9 @@
 import { memo, useState, useCallback } from "react";
 import { useUsers } from "@/hooks/useUsers";
+import type { User } from "@/types/user";
 import { useFilterSort } from "@/hooks/useFilterSort";
 import { sortUsers } from "@/lib/sortUsers";
+import { filterUsers } from "@/lib/filterUsers";
 import { UserTable } from "./UserTable";
 import { UserTableSkeleton } from "./UserTableSkeleton";
 import { UserCards } from "./UserCards";
@@ -21,27 +23,13 @@ import {
   CardHeader,
   CardTitle,
 } from "@/components/ui/card";
-import type { User } from "@/types/user";
 
 export const UsersSection = memo(function UsersSection() {
   const { data: users = [], isLoading, error, refetch } = useUsers();
   const [viewMode, setViewMode] = useState<ViewMode>("table");
   const [selectedUser, setSelectedUser] = useState<User | null>(null);
   const [isModalOpen, setIsModalOpen] = useState(false);
-  const [simulatedState, setSimulatedState] =
-    useState<SimulatedState>("normal");
-
-  const filterFn = useCallback((user: User, searchTerm: string) => {
-    if (!searchTerm.trim()) return true;
-    const term = searchTerm.toLowerCase();
-    return (
-      user.name.toLowerCase().includes(term) ||
-      user.email.toLowerCase().includes(term) ||
-      user.username.toLowerCase().includes(term) ||
-      user.company.name.toLowerCase().includes(term) ||
-      user.address.city.toLowerCase().includes(term)
-    );
-  }, []);
+  const [simulatedState, setSimulatedState] = useState<SimulatedState>("normal");
 
   const {
     searchTerm,
@@ -56,7 +44,7 @@ export const UsersSection = memo(function UsersSection() {
     handleSortOrderToggle,
   } = useFilterSort<User, SortField>({
     items: users,
-    filterFn,
+    filterFn: filterUsers,
     sortFn: sortUsers,
     initialSortField: "name",
     initialSortOrder: "asc",
@@ -72,15 +60,10 @@ export const UsersSection = memo(function UsersSection() {
   }, []);
 
   // Determine which state to show
-  const showLoading =
-    simulatedState === "loading" || (simulatedState === "normal" && isLoading);
-  const showError =
-    simulatedState === "error" || (simulatedState === "normal" && error);
-  const showEmpty =
-    simulatedState === "empty" ||
-    (simulatedState === "normal" && users.length === 0);
-  const showNoResults =
-    simulatedState === "normal" && filteredCount === 0 && searchTerm;
+  const showLoading = simulatedState === "loading" || (simulatedState === "normal" && isLoading);
+  const showError = simulatedState === "error" || (simulatedState === "normal" && error);
+  const showEmpty = simulatedState === "empty" || (simulatedState === "normal" && users.length === 0);
+  const showNoResults = simulatedState === "normal" && filteredCount === 0 && searchTerm;
 
   const sortOptions: SortOption<SortField>[] = [
     { value: "name", label: "Name" },
@@ -119,7 +102,6 @@ export const UsersSection = memo(function UsersSection() {
               <ViewSwitcher view={viewMode} onViewChange={setViewMode} />
             </div>
           </div>
-
           {showLoading ? (
             viewMode === "table" ? (
               <UserTableSkeleton />

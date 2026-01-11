@@ -1,12 +1,7 @@
 import { memo } from "react";
-// import { Button } from "@/components/ui/button";
-import { useAuth } from "@/hooks/useAuth";
-// import { LogOut, Users } from "lucide-react";
 import { Users } from "lucide-react";
 
 export const Navbar = memo(function Navbar() {
-  // const { user, logout } = useAuth();
-  const { user } = useAuth();
 
   return (
     <nav className="fixed top-0 left-0 right-0 z-50 bg-background border-b">
@@ -19,17 +14,11 @@ export const Navbar = memo(function Navbar() {
             </h1>
           </div>
           <div className="flex items-center gap-4">
-            {user && (
-              <div className="text-sm text-muted-foreground">
-                <span className="font-medium">Alaa Ganema</span>
-                <span className="mx-2">•</span>
-                <span>Admin</span>
-              </div>
-            )}
-            {/* <Button variant="outline" size="sm" onClick={logout}>
-              <LogOut className="h-4 w-4 md:mr-2" />
-              <span className="hidden md:block">Logout</span>
-            </Button> */}
+            <div className="text-sm text-muted-foreground">
+              <span className="font-medium">Alaa Ganema</span>
+              <span className="mx-2">•</span>
+              <span>Admin</span>
+            </div>
           </div>
         </div>
       </div>

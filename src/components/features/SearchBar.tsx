@@ -66,8 +66,6 @@ function SearchBarComponent<T extends string | number>({
   );
 }
 
-export const SearchBar = memo(SearchBarComponent) as <
-  T extends string | number
->(
+export const SearchBar = memo(SearchBarComponent) as <T extends string | number>(
   props: SearchBarProps<T>
 ) => ReactElement;

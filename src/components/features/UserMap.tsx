@@ -11,13 +11,8 @@ export function UserMap({ user }: UserMapProps) {
   const addressString = `${user.address.street}, ${user.address.suite}, ${user.address.city}, ${user.address.zipcode}`;
 
   const mapUrl = `https://www.openstreetmap.org/export/embed.html?bbox=${
-    parseFloat(lng) - 0.01
-  },${parseFloat(lat) - 0.01},${parseFloat(lng) + 0.01},${
-    parseFloat(lat) + 0.01
-  }&layer=mapnik&marker=${lat},${lng}`;
-
-  // Alternative: Google Maps embed (requires API key in production)
-  // const mapUrl = `https://www.google.com/maps/embed/v1/place?key=YOUR_API_KEY&q=${lat},${lng}`;
+    parseFloat(lng) - 0.01},${parseFloat(lat) - 0.01},${parseFloat(lng) + 0.01},${parseFloat(lat) + 0.01}
+    &layer=mapnik&marker=${lat},${lng}`;
 
   return (
     <Card className="shadow-none">

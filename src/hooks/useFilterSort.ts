@@ -1,16 +1,12 @@
 import { useState, useMemo, useCallback } from "react";
-
-export type SortOrder = "asc" | "desc";
+import type { SortOrder } from "@/types/user";
 
 export interface SortConfig<TField extends string | number = string | number> {
   field: TField;
   order: SortOrder;
 }
 
-export interface UseFilterSortOptions<
-  T,
-  TField extends string | number = string | number
-> {
+export interface UseFilterSortOptions<T, TField extends string | number = string | number> {
   items: T[];
   filterFn?: (item: T, searchTerm: string) => boolean;
   sortFn?: (items: T[], config: SortConfig<TField>) => T[];
@@ -18,10 +14,7 @@ export interface UseFilterSortOptions<
   initialSortOrder?: SortOrder;
 }
 
-export function useFilterSort<
-  T,
-  TField extends string | number = string | number
->({
+export function useFilterSort<T, TField extends string | number = string | number>({
   items,
   filterFn,
   sortFn,
@@ -29,7 +22,7 @@ export function useFilterSort<
   initialSortOrder = "asc",
 }: UseFilterSortOptions<T, TField>) {
   const [searchTerm, setSearchTerm] = useState("");
-  const [sortField, setSortField] = useState<TField>(
+  const [sortField, setSortField] = useState<TField>( 
     initialSortField ?? ("" as TField)
   );
   const [sortOrder, setSortOrder] = useState<SortOrder>(initialSortOrder);
